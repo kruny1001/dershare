@@ -1,0 +1,52 @@
+//protoc -I dershare/ dershare/dershare.proto --go_out=plugins=grpc:dershare
+
+syntax = "proto3";
+
+package helloworld;
+
+// The greeting service definition.
+service Greeter {
+
+    rpc SayHello (HelloRequest) returns (HelloReply) {}
+
+    rpc ListContainers (ListContainer) returns ( stream Container ) {}
+
+    rpc QueryESSUsage (EssSiteInfo) returns ( stream QueryResultRow ) {}
+}
+
+// The request message containing the user's name.
+message HelloRequest {
+    string name = 1;
+}
+
+// The response message containing the greetings
+message HelloReply {
+    string message = 1;
+}
+
+message ListContainer {
+    // The name of the feature.
+    string name = 1;
+}
+
+message EssSiteInfo{
+    string id = 1;
+    string start = 2;
+    string end =3;
+}
+
+// Return Container List
+message ContainerList {
+    repeated Container stocks = 1;
+}
+
+message QueryResultRow{
+    string time = 1;
+//    float usage = 2;
+    string usage = 2;
+}
+
+message Container {
+    string id = 1;
+    string image = 2;
+}
