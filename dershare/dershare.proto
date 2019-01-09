@@ -12,6 +12,15 @@ service Greeter {
     rpc ListContainers (ListContainer) returns ( stream Container ) {}
 
     rpc QueryESSUsage (EssSiteInfo) returns ( stream QueryResultRow ) {}
+
+    rpc SimESS (EssSiteInfo) returns (stream SimStatus) {}
+
+    rpc BuildRMD (EssSiteInfo) returns (HelloReply) {}
+}
+
+
+message SimStatus {
+    string status = 1;
 }
 
 // The request message containing the user's name.
